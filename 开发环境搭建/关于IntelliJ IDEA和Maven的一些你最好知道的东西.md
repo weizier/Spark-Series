@@ -1,11 +1,41 @@
-IntelliJ IDEA安装及配置
-　　首先在https://www.jetbrains.com/idea/?fromMenu#chooseYourEdition 这里选择community版本，这个版本是免费提供的，并且对我们的Spark使用来说，用这个版本已经足够了。如下图所示：
+一般来说，在IntelliJ IDEA中，默认的代码字体大小比较偏小一些，所以可以配置一下字体的大小，在欢迎界面有一个“Configure”选项，点击后选择“Settings”，顺序是：Configure - Settings - Editor - Color&Fonts - Font，来到字体设置的界面。
 
-　　直接点击黑色的“DOWNLOAD”按钮会默认开始下载Windows版本的IntelliJ IDEA，如果需要其他平台的可以点击旁边的“.EXE”进行选择即可。
-　　下载完成后，双击exe文件，进行安装，其中所有选项按照默认的即可，然后运行IntelliJ IDEA，这个时候也有一些配置需要选择，全部按照默认的即可，直到来到下面的界面，这里对IntelliJ IDEA做一些全局配置。一般来说，在IntelliJ IDEA中，默认的代码字体大小比较偏小一些，所以可以配置一下字体的大小，在欢迎界面有一个“Configure”选项，点击后选择“Settings”，顺序是：Configure - Settings - Editor - Color&Fonts - Font，来到字体设置的界面。
+
 　　
 　　如下图所示，首先要将当前的模版保存一下，直接点击“Save As”即可，然后这个时候就可以调整字体大小了，我一般将默认的12调整为20。这个可以按照自己的习惯进行设置。
 　　
+## Project
+IDEA中的`.ieda`文件夹中主要有如下类型的`.xml`文件：
+- `\libraries`文件夹中主要是保存了项目用到的各种jar包的一些信息（主要是jar包存储位置）
+
+```xml
+<component name="libraryTable">
+  <library name="Maven: org.apache.zookeeper:zookeeper:3.4.5">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/zookeeper/zookeeper/3.4.5/zookeeper-3.4.5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/zookeeper/zookeeper/3.4.5/zookeeper-3.4.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/zookeeper/zookeeper/3.4.5/zookeeper-3.4.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
+
+```
+我的Maven仓库路径为`C:\Users\weizierxu\.m2\repository`，这也就说明去下面这个目录可以找到`zookeeper-3.4.5.jar`，并且这个jar的package为`org.apache.zookeeper`
+`C:\Users\weizierxu\.m2\repository\org\apache\zookeeper\zookeeper\3.4.5`
+后面加个`!`的原因，估计是有可能找不到这个包。
+
+- 项目的一些其他配置文件，包括`compiler.xml`, `encodings.xml`, `modules.xml`等等，这些配置文件可以通过和他人共享，从而促进该项目下多人之间的协同工作。
+- `workspace.xml`则是你自己对于代码的一些配置文件，比如你的代码存储在什么路径下等等，这个文件不应该被共享。
+
+## Module
+Module是一个相对独立的功能单元，一般来说我们都是创建了一个只含有一个Module的Project，Module的所有配置信息都保存在`.iml`文件中，因而可以在团队之间分享。
+- Module更类似于Eclipse中的Project，而Project更加类似于Eclipse中的WorkSparce
+- 同一个Project中可以创建多个Module，各自相互独立，并且在各自的目录下都有一个.iml文件
+
 　　
 　　然后是最重要的，下载所需要的Scala插件，在欢迎界面的“Configure”选项下选择“Plugins”，然后在插件安装的界面点击“Install JetBrains plugins”，如果能够正常连接上网络的话，这个时候应该会显示一系列可以安装的插件，如果因为在公司的内网，无法安装插件的话，需要按照下图所示的方法进行代理设置（另附公司的代理设置指引）：
 　　
